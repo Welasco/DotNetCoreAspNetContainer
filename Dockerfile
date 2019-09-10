@@ -10,7 +10,8 @@ RUN apt-get update \
         curl \
         wget \
         tcptraceroute \
-        sudo
+        sudo \
+        net-tools 
 
 RUN mkdir -p /defaulthome/hostingstart \
     && mkdir -p /home/LogFiles/ \
