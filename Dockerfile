@@ -31,7 +31,7 @@ RUN mkdir -p /opt/startup \
    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
    && rm -rf /tmp/* \
    && groupadd -r dotnet && useradd -m -g dotnet dotnet\
-   echo "dotnet   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers;\
+   echo "dotnet   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers\
    && cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
    && chmod 777 * 
