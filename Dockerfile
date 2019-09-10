@@ -29,7 +29,7 @@ RUN mkdir -p /opt/startup \
    && chmod -R +x /tmp/ssh_setup.sh \
    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
    && rm -rf /tmp/* \
-   && groupadd -r dotnet && useradd -m -g dotnet dotnet;\
+   && groupadd -r dotnet && useradd -m -g dotnet dotnet\
    && cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
    && chmod 777 * 
