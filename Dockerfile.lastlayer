@@ -1,0 +1,23 @@
+FROM  welasco/base
+
+COPY DotNetCoreAspNet/bin/Debug/netcoreapp2.2/publish /DotNetCoreAspNet
+
+RUN groupadd -r dotnet && useradd -m -g dotnet dotnet\
+   && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers\
+   && cd /DotNetCoreAspNet \
+   && chown -R dotnet:dotnet .\
+   && chmod 777 * 
+
+ENV PORT 8080
+ENV SSH_PORT 2222
+EXPOSE 8080 2222
+
+ENV WEBSITE_ROLE_INSTANCE_ID localRoleInstance
+ENV WEBSITE_INSTANCE_ID localInstance
+ENV PATH ${PATH}:/home/site/wwwroot
+ENV ASPNETCORE_URLS=
+ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+
+USER dotnet
+
+ENTRYPOINT ["/bin/init_container.sh"]
