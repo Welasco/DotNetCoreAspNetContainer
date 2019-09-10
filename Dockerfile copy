@@ -14,12 +14,16 @@ RUN apt-get update \
 RUN mkdir -p /defaulthome/hostingstart \
     && mkdir -p /home/LogFiles/ \
     && echo "root:Docker!" | chpasswd \
-    && echo "cd /DotNetCoreAspNet" >> /etc/bash.bashrc
+    && echo "cd /defaulthome/hostingstart" >> /etc/bash.bashrc
 
-COPY DotNetCoreAspNet/bin/publish /DotNetCoreAspNet
+COPY bin.zip /tmp
+RUN unzip -q -o /tmp/bin.zip -d /defaulthome/hostingstart \
+    && rm /tmp/bin.zip
 
 COPY init_container.sh /bin/
 RUN chmod 755 /bin/init_container.sh
+
+COPY hostingstart.html /defaulthome/hostingstart/wwwroot/
 
 # configure startup
 COPY sshd_config /etc/ssh/
