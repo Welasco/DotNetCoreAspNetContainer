@@ -25,7 +25,7 @@ sed -i "s/SSH_PORT/$SSH_PORT/g" /etc/ssh/sshd_config
 appPath="/home/site/wwwroot"
 runFromPath="/tmp/webapp"
 startupCommandPath="/opt/startup/startup.sh"
-defaultAppPath="/defaulthome/hostingstart/hostingstart.dll"
+defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"
 userStartupCommand="$@"
 
 # When run from copy is enabled, Oryx tries to run the app from a different directory (local to the container),

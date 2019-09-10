@@ -16,7 +16,7 @@ RUN mkdir -p /defaulthome/hostingstart \
     && echo "root:Docker!" | chpasswd \
     && echo "cd /DotNetCoreAspNet" >> /etc/bash.bashrc
 
-COPY DotNetCoreAspNet/bin/publish /DotNetCoreAspNet
+COPY DotNetCoreAspNet/bin/Debug/netcoreapp2.2/publish /DotNetCoreAspNet
 
 COPY init_container.sh /bin/
 RUN chmod 755 /bin/init_container.sh
