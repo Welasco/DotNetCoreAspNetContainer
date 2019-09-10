@@ -9,7 +9,8 @@ RUN apt-get update \
         vim \
         curl \
         wget \
-        tcptraceroute
+        tcptraceroute \
+        sudo
 
 RUN mkdir -p /defaulthome/hostingstart \
     && mkdir -p /home/LogFiles/ \
