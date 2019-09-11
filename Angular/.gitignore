@@ -229,7 +229,3 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
-
-
-/DotNetCoreAspNet/bin
-/DotNetCoreAspNet/obj
