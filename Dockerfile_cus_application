@@ -4,13 +4,6 @@ COPY DotNetCoreAspNet/bin/Debug/netcoreapp2.2/publish /DotNetCoreAspNet
 
 USER root
 
-RUN cp /app/ClientApp/dist/index.html /index.html && \
-	cp /app/ClientApp/dist/index.html /app/index.html && \
-    cp /app/ClientApp/dist/index.html /app/ClientApp/index.html && \
-	chown -R angular:angular /app && \
-    chmod -R 0755 /app && \
-    chown 0755 /index.html
-
 RUN cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
    && chmod 644 *
