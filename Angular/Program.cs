@@ -14,11 +14,13 @@ namespace Angular
     {
         public static void Main(string[] args)
         {
+            string EnvPort = Environment.GetEnvironmentVariable("Port") ?? "8080";
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args, string EnvPort) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://0.0.0.0:"+EnvPort)
                 .UseStartup<Startup>();
     }
 }
