@@ -10,6 +10,7 @@ RUN apt-get update \
         curl \
         wget \
         tcptraceroute \
+        sudo \
         net-tools 
 
 RUN echo "root:Docker!" | chpasswd \
@@ -28,6 +29,7 @@ RUN chmod -R +x /tmp/ssh_setup.sh \
    && chmod au+r /etc/ssh/ssh_host* \
    && chmod a+w /etc/ssh/sshd_config \
    && groupadd -r dotnet && useradd -m -g dotnet dotnet\
+   && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service ssh start,/usr/sbin/service ssh stop, /usr/sbin/service ssh status, /etc/init.d/ssh start, /etc/init.d/ssh stop, /etc/init.d/ssh status" >> /etc/sudoers\
    && cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
    && chmod 644 * 
