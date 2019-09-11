@@ -26,7 +26,6 @@ COPY ssh_setup.sh /tmp
 RUN chmod -R +x /tmp/ssh_setup.sh \
    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
    && rm -rf /tmp/* \
-   && chmod au+r /etc/ssh/ssh_host* \
    && chmod a+w /etc/ssh/sshd_config \
    && groupadd -r dotnet && useradd -m -g dotnet dotnet\
    && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service ssh start,/usr/sbin/service ssh stop, /usr/sbin/service ssh status, /etc/init.d/ssh start, /etc/init.d/ssh stop, /etc/init.d/ssh status" >> /etc/sudoers\
