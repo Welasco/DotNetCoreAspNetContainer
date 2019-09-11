@@ -10,32 +10,27 @@ RUN apt-get update \
         curl \
         wget \
         tcptraceroute \
-        sudo \
         net-tools 
 
-RUN mkdir -p /defaulthome/hostingstart \
-    && mkdir -p /home/LogFiles/ \
-    && echo "root:Docker!" | chpasswd \
+RUN echo "root:Docker!" | chpasswd \
     && echo "cd /DotNetCoreAspNet" >> /etc/bash.bashrc
 
 COPY DotNetCoreAspNet/bin/Debug/netcoreapp2.2/publish /DotNetCoreAspNet
-
 COPY init_container.sh /bin/
 RUN chmod 755 /bin/init_container.sh
 
 # configure startup
 COPY sshd_config /etc/ssh/
 COPY ssh_setup.sh /tmp
-RUN mkdir -p /opt/startup \
-   && chmod -R +x /opt/startup \
-   && chmod -R +x /tmp/ssh_setup.sh \
+RUN chmod -R +x /tmp/ssh_setup.sh \
    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
    && rm -rf /tmp/* \
+   && chmod au+r ssh_host* \
+   && chmod a+w sshd_config \
    && groupadd -r dotnet && useradd -m -g dotnet dotnet\
-   && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers\
    && cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
-   && chmod 777 * 
+   && chmod 644 * 
 
 
 ENV PORT 8080
