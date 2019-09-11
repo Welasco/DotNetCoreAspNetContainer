@@ -11,6 +11,16 @@ cp /tmp/sshd_config /etc/ssh/sshd_config
 # sed -i "s/SSH_PORT/$SSH_PORT/g" /etc/ssh/sshd_config
 sudo /usr/sbin/service ssh start
 
-defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"
+if [ ! -f "/DotNetCoreAspNet/DotNetCoreAspNet.dll" ]; then
+  # generate fresh rsa key
+  defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"
+fi
+
+if [ ! -f "/Angular/Angular.dll" ]; then
+  # generate fresh rsa key
+  defaultAppPath="/Angular/Angular.dll"
+fi
+
+# defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"
 
 dotnet $defaultAppPath
