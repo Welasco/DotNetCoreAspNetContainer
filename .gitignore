@@ -233,3 +233,4 @@ _Pvt_Extensions
 
 /DotNetCoreAspNet/bin
 /DotNetCoreAspNet/obj
+package-lock.json
