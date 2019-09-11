@@ -1,0 +1,31 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        apt-utils \
+        unzip \
+        openssh-server \
+        vim \
+        curl \
+        wget \
+        tcptraceroute \
+        sudo \
+        net-tools \
+    && echo "root:Docker!" | chpasswd \
+    && echo "cd /DotNetCoreAspNet" >> /etc/bash.bashrc \
+    && groupadd -r dotnet && useradd -m -g dotnet dotnet \
+    && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service ssh start,/usr/sbin/service ssh stop, /usr/sbin/service ssh status, /etc/init.d/ssh start, /etc/init.d/ssh stop, /etc/init.d/ssh status" >> /etc/sudoers
+
+COPY init_container.sh /bin/
+RUN chmod 755 /bin/init_container.sh
+
+# configure startup
+COPY sshd_config /etc/ssh/
+COPY ssh_setup.sh /tmp
+
+RUN chmod -R +x /tmp/ssh_setup.sh \
+   && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
+   && rm -rf /tmp/* \
+   && chmod a+w /etc/ssh/sshd_config
+
+USER dotnet
