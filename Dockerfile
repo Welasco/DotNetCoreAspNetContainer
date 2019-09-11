@@ -26,7 +26,7 @@ RUN chmod -R +x /tmp/ssh_setup.sh \
    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
    && rm -rf /tmp/* \
    && chmod au+r /etc/ssh/ssh_host* \
-   && chmod a+w sshd_config \
+   && chmod a+w /etc/ssh/sshd_config \
    && groupadd -r dotnet && useradd -m -g dotnet dotnet\
    && cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
