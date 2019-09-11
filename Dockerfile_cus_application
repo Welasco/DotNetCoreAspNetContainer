@@ -8,6 +8,10 @@ RUN cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
    && chmod 644 *
 
+ENV PORT 8080
+ENV SSH_PORT 2222
+EXPOSE 8080 2222
+
 USER dotnet
 
 ENTRYPOINT ["/bin/init_container.sh"]
