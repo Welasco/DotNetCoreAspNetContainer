@@ -12,7 +12,6 @@ RUN apt-get update \
         sudo \
         net-tools \
     && echo "root:Docker!" | chpasswd \
-    && echo "cd /DotNetCoreAspNet" >> /etc/bash.bashrc \
     && groupadd -r dotnet && useradd -m -g dotnet dotnet \
     && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service ssh start,/usr/sbin/service ssh stop, /usr/sbin/service ssh status, /etc/init.d/ssh start, /etc/init.d/ssh stop, /etc/init.d/ssh status" >> /etc/sudoers
 

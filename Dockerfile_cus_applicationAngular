@@ -5,7 +5,8 @@ COPY Angular/bin/Debug/netcoreapp2.2/publish /Angular
 USER root
 
 RUN cd /Angular \
-   && chown -R dotnet:dotnet .
+   && chown -R dotnet:dotnet . \
+   && chmod 644 `find -type f`
 
 COPY init_container.sh /bin/
 RUN chmod 755 /bin/init_container.sh
