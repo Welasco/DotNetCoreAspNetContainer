@@ -16,9 +16,6 @@ RUN apt-get update \
     && groupadd -r dotnet && useradd -m -g dotnet dotnet \
     && echo "dotnet   ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service ssh start,/usr/sbin/service ssh stop, /usr/sbin/service ssh status, /etc/init.d/ssh start, /etc/init.d/ssh stop, /etc/init.d/ssh status" >> /etc/sudoers
 
-COPY init_container.sh /bin/
-RUN chmod 755 /bin/init_container.sh
-
 # configure startup
 COPY sshd_config /etc/ssh/
 COPY ssh_setup.sh /tmp

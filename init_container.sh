@@ -18,7 +18,8 @@ fi
 
 if [ -f "/Angular/Angular.dll" ]; then
   # generate fresh rsa key
-  defaultAppPath="/Angular/Angular.dll"
+  cd /Angular
+  defaultAppPath="Angular.dll"
 fi
 
 # defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"

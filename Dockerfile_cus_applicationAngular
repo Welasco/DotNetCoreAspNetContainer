@@ -5,8 +5,10 @@ COPY Angular/bin/Debug/netcoreapp2.2/publish /Angular
 USER root
 
 RUN cd /Angular \
-   && chown -R dotnet:dotnet .\
-   && chmod 644 *
+   && chown -R dotnet:dotnet .
+
+COPY init_container.sh /bin/
+RUN chmod 755 /bin/init_container.sh
 
 ENV PORT 8080
 ENV SSH_PORT 2222
