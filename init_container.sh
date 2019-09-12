@@ -13,6 +13,7 @@ sudo /usr/sbin/service ssh start
 
 if [ -f "/DotNetCoreAspNet/DotNetCoreAspNet.dll" ]; then
   # generate fresh rsa key
+  cd /DotNetCoreAspNet
   defaultAppPath="/DotNetCoreAspNet/DotNetCoreAspNet.dll"
 fi
 

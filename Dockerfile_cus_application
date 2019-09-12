@@ -6,7 +6,10 @@ USER root
 
 RUN cd /DotNetCoreAspNet \
    && chown -R dotnet:dotnet .\
-   && chmod 644 *
+   && chmod 644 `find -type f`
+
+COPY init_container.sh /bin/
+RUN chmod 755 /bin/init_container.sh
 
 ENV PORT 8080
 ENV SSH_PORT 2222
