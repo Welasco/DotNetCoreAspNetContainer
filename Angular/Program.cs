@@ -20,7 +20,7 @@ namespace Angular
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args, string EnvPort) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://0.0.0.0:"+EnvPort)
+                // .UseUrls("http://0.0.0.0:"+EnvPort)
                 .UseStartup<Startup>();
     }
 }
